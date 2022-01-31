@@ -29,8 +29,8 @@ unsigned long delai;
  const uint8_t cableVertI_2    = 19;
  const uint8_t cableBleu_2     = 17;
  const uint8_t cableBleuI_2    = 16;
- const uint8_t cableBrun_2     = 15;
- const uint8_t cableBrunI_2    =  2;
+ const uint8_t cableBrun_2     = 22;
+ const uint8_t cableBrunI_2    = 23;
 
 // Déclaration d'un cable
 Cable emeteur(cableOrange_1, cableOrangeI_1, cableVert_1, cableVertI_1,cableBleu_1, cableBleuI_1, cableBrun_1, cableBrunI_1);
@@ -39,6 +39,9 @@ Cable destinataire(cableOrange_2, cableOrangeI_2, cableVert_2, cableVertI_2,cabl
 void setup() {
 
   delai = 5000;
+
+  // on démarre la liaison
+  // en la réglant à une vitesse de 9600 bits par seconde.
   Serial.begin(9600); // Debit de communication par seconde depuis le Moniteur serie
 
   emeteur.modeBroche(OUTPUT);
@@ -47,15 +50,7 @@ void setup() {
 
 void loop() {
   
-  emeteur.miseSousTension(HIGH);
-  //emeteur.setHigh();
+  Cable::natureDuCable(emeteur, destinataire);
 
-  if (destinataire.verifierSignale() == true){
-    Serial.println(" ");
-    Serial.println("Le cable fonctionne !");
-  }else{
-    Serial.println(" Le cable ne fonctionne pas !");
-  }
-  
   delay(delai); // delai de 5 secondes
 }

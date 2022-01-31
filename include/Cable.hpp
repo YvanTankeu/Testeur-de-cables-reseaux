@@ -57,6 +57,8 @@ public:
 
     // Prototype de verification du signal entre plusieurs bornes réliées entre elles
     bool verifierSignale();   
+
+    static void natureDuCable(Cable obj1, Cable obj2);
 };
 
 #endif
